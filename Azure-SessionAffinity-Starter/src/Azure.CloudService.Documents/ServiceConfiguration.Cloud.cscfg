@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Azure.CloudService.Documents" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="5" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="Azure.WebRole.Routing">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="ServiceBusURISchema" value="sb" />
+      <Setting name="ServiceBusNamespace" value="{Put the Service Bus Namespace here}" />
+      <Setting name="ServiceBusPath" value="WorkSessionRelay" />
+      <Setting name="ServiceBusSharedAccessKeyName" value="{Put the Service Bus Shared Access Key Name here}" />
+      <Setting name="ServiceBusSharedAccessKey" value="{Put the Service Bus Shared Access Key Value here}" />
+      <Setting name="DocumentServerRoleName" value="Azure.WebRole.DocumentSite" />
+      <Setting name="DocumentServerPort" value="8080" />
+      <Setting name="RoutingServerRoleName" value="Azure.WebRole.Routing" />
+      <Setting name="FarmConfigurationUpdateInterval" value="15" />
+      <Setting name="ServerStatusBroadcastInterval" value="30" />
+      <Setting name="ServerStatusExpirationInterval" value="90" />
+      <Setting name="HealthCheckPageUrl" value="HealthCheck.txt" />
+      <Setting name="HealthCheckResponseMatch" value="OK" />
+    </ConfigurationSettings>
+  </Role>
+  <Role name="Azure.WebRole.DocumentSite">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="DocumentsConnectionString" value="{put your Documents DB connection string here}" />
+      <Setting name="HibernationConnectionString" value="{put your Hibernation DB connection string here}" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="0de11b29-40b3-4952-9292-b93aea200c74" />
+      <Setting name="ServiceBusURISchema" value="sb" />
+      <Setting name="ServiceBusNamespace" value="{Put the Service Bus Namespace here}" />
+      <Setting name="ServiceBusPath" value="WorkSessionRelay" />
+      <Setting name="ServiceBusSharedAccessKeyName" value="{Put the Service Bus Shared Access Key Name here}" />
+      <Setting name="ServiceBusSharedAccessKey" value="{Put the Service Bus Shared Access Key Value here}" />
+      <Setting name="DocumentServerRoleName" value="Azure.WebRole.DocumentSite" />
+      <Setting name="DocumentServerPort" value="8080" />
+      <Setting name="RoutingServerRoleName" value="Azure.WebRole.Routing" />
+      <Setting name="ServerStatusBroadcastInterval" value="30" />
+      <Setting name="ServerStatusExpirationInterval" value="90" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

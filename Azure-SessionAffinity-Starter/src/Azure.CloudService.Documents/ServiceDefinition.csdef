@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="Azure.CloudService.Documents" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WebRole name="Azure.WebRole.Routing" vmsize="Small">
+    <Runtime executionContext="elevated">
+    </Runtime>
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="Endpoint1" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <ConfigurationSettings>
+      <Setting name="ServiceBusURISchema" />
+      <Setting name="ServiceBusNamespace" />
+      <Setting name="ServiceBusPath" />
+      <Setting name="ServiceBusSharedAccessKeyName" />
+      <Setting name="ServiceBusSharedAccessKey" />
+      <Setting name="DocumentServerRoleName" />
+      <Setting name="DocumentServerPort" />
+      <Setting name="RoutingServerRoleName" />
+      <Setting name="FarmConfigurationUpdateInterval" />
+      <Setting name="ServerStatusBroadcastInterval" />
+      <Setting name="ServerStatusExpirationInterval" />
+      <Setting name="HealthCheckPageUrl" />
+      <Setting name="HealthCheckResponseMatch" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+      <InternalEndpoint name="InternalEndpoint1" protocol="tcp" />
+    </Endpoints>
+    <Startup>
+      <Task commandLine="setup.cmd" executionContext="elevated" />
+    </Startup>
+  </WebRole>
+  <WebRole name="Azure.WebRole.DocumentSite" vmsize="Small">
+    <Runtime executionContext="elevated">
+    </Runtime>
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="Endpoint1" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <ConfigurationSettings>
+      <Setting name="DocumentsConnectionString" />
+      <Setting name="HibernationConnectionString" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" />
+      <Setting name="ServiceBusURISchema" />
+      <Setting name="ServiceBusNamespace" />
+      <Setting name="ServiceBusPath" />
+      <Setting name="ServiceBusSharedAccessKeyName" />
+      <Setting name="ServiceBusSharedAccessKey" />
+      <Setting name="DocumentServerRoleName" />
+      <Setting name="DocumentServerPort" />
+      <Setting name="RoutingServerRoleName" />
+      <Setting name="ServerStatusBroadcastInterval" />
+      <Setting name="ServerStatusExpirationInterval" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="8080" />
+      <InternalEndpoint name="InternalEndpoint1" protocol="tcp" />
+    </Endpoints>
+    <Startup>
+      <Task commandLine="Setup/InstallAppInitializationModule.cmd" executionContext="elevated" />
+    </Startup>
+  </WebRole>
+</ServiceDefinition>
