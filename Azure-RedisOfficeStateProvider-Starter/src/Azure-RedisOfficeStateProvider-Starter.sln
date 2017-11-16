@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Azure-RedisOfficeStateProvider-Starter", "Azure-RedisOfficeStateProvider-Starter\Azure-RedisOfficeStateProvider-Starter.ccproj", "{2B8E8938-680E-41B3-9894-0C9B51BADEA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{23B4E0DA-A5E7-4808-BB3A-67AA5DE0637D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpress.Web.RedisOfficeStateProvider", "..\..\RedisOfficeStateProvider\src\DevExpress.Web.RedisOfficeStateProvider.csproj", "{7EDA111E-ECA2-49FF-8AA3-868E0AF4D1B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B8E8938-680E-41B3-9894-0C9B51BADEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8E8938-680E-41B3-9894-0C9B51BADEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8E8938-680E-41B3-9894-0C9B51BADEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8E8938-680E-41B3-9894-0C9B51BADEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23B4E0DA-A5E7-4808-BB3A-67AA5DE0637D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B4E0DA-A5E7-4808-BB3A-67AA5DE0637D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B4E0DA-A5E7-4808-BB3A-67AA5DE0637D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B4E0DA-A5E7-4808-BB3A-67AA5DE0637D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDA111E-ECA2-49FF-8AA3-868E0AF4D1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDA111E-ECA2-49FF-8AA3-868E0AF4D1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDA111E-ECA2-49FF-8AA3-868E0AF4D1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDA111E-ECA2-49FF-8AA3-868E0AF4D1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Azure-SqlOfficeStateProvider-Starter", "Azure-SqlOfficeStateProvider-Starter\Azure-SqlOfficeStateProvider-Starter.ccproj", "{48AFB3B2-FC16-4DB5-8C75-4F010A2A59F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{F1AB2F87-2147-41FD-BEAB-CF168F8477E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpress.Web.SqlOfficeStateProvider", "..\SqlOfficeStateProvider\DevExpress.Web.SqlOfficeStateProvider.csproj", "{15DAB813-0130-44D2-8C22-A676BF4C5DD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48AFB3B2-FC16-4DB5-8C75-4F010A2A59F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48AFB3B2-FC16-4DB5-8C75-4F010A2A59F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48AFB3B2-FC16-4DB5-8C75-4F010A2A59F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48AFB3B2-FC16-4DB5-8C75-4F010A2A59F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1AB2F87-2147-41FD-BEAB-CF168F8477E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1AB2F87-2147-41FD-BEAB-CF168F8477E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1AB2F87-2147-41FD-BEAB-CF168F8477E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1AB2F87-2147-41FD-BEAB-CF168F8477E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal
