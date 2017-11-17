@@ -11,6 +11,7 @@ DROP PROCEDURE [dbo].[AddCheckedOut]
 DROP PROCEDURE [dbo].[getWorkSessionIdFromDocumentId]
 DROP PROCEDURE [dbo].[setState]
 DROP PROCEDURE [dbo].[tryToLock]
+DROP PROCEDURE [dbo].[getTimeStamp]
 DROP PROCEDURE [dbo].[Find]
 DROP PROCEDURE [dbo].[HasWorkSessionId]
 DROP PROCEDURE [dbo].[Remove]
@@ -28,7 +29,8 @@ Go
 
 CREATE TABLE [dbo].[Locks](
 	[WorkSessionId] [nvarchar](50) NOT NULL,
-	[LockerId] [nvarchar](1000) NOT NULL
+	[LockerId] [nvarchar](1000) NOT NULL,
+	[Timestamp] [INT] NOT NULL
 );
 GO
 
@@ -80,6 +82,12 @@ AS
 	SET @WorkSessionId = (SELECT TOP(1) [WorkSessionId] FROM [dbo].[DocIdToWorkSessionId] WHERE [DocumentId] = @DocumentId)
 GO
 
+CREATE PROCEDURE [dbo].[getTimeStamp]
+@timestamp INT OUTPUT
+AS
+	SET @timestamp = (SELECT DATEDIFF(s, '1970-01-01 00:00:00', GETUTCDATE()))
+GO
+
 CREATE PROCEDURE [dbo].[tryToLock]
 @WorkSessionId NVARCHAR(50),
 @lockerId NVARCHAR(1000),
@@ -87,15 +95,35 @@ CREATE PROCEDURE [dbo].[tryToLock]
 AS
 BEGIN
 	DECLARE @AlreadyLockedBy NVARCHAR(1000)
-	SET @AlreadyLockedBy = (SELECT  TOP (1) [LockerId] FROM [dbo].[Locks] WHERE [WorkSessionId] = @WorkSessionId)
+	DECLARE @PreviousTimeStamp INT
+	DECLARE @CurrentTimeStamp INT
+	DECLARE @lockTimeout INT = 10
+	DECLARE @lockTimeoutExpired BIT = 0
 
-	IF @AlreadyLockedBy IS NULL
-		INSERT INTO [dbo].[Locks] ([workSessionId], [LockerId]) VALUES (@WorkSessionId, @lockerId);
-	ELSE
+	EXEC [dbo].[getTimeStamp] @CurrentTimeStamp OUTPUT
+
+	SELECT  @AlreadyLockedBy = [LockerId], @PreviousTimeStamp = [Timestamp] FROM [dbo].[Locks] WHERE [WorkSessionId] = @WorkSessionId
+
+	IF @AlreadyLockedBy IS NOT NULL
 	BEGIN
 		IF @AlreadyLockedBy != @lockerId
-			SET @WasLockedByAnother = 1
+		BEGIN
+			SET @lockTimeoutExpired = (SELECT IIF (@CurrentTimeStamp - @PreviousTimeStamp > @lockTimeout, 'TRUE', 'FALSE' ))
+			IF @lockTimeoutExpired = 0
+				SET @WasLockedByAnother = 1
+			ELSE
+			BEGIN
+				DELETE FROM [dbo].[Locks] WHERE [WorkSessionId]=@WorkSessionId
+				SET @AlreadyLockedBy = NULL
+			END
+
+		END
+		IF @AlreadyLockedBy != @lockerId
+			UPDATE [dbo].[Locks] SET [Timestamp] = @CurrentTimeStamp WHERE [WorkSessionId] = @WorkSessionId
 	END
+
+	IF @AlreadyLockedBy IS NULL
+		INSERT INTO [dbo].[Locks] ([workSessionId], [LockerId], [Timestamp]) VALUES (@WorkSessionId, @lockerId, @CurrentTimeStamp);
 
 END
 GO
