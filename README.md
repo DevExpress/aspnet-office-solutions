@@ -64,5 +64,4 @@ The SQL Server stores document states in a database on a persistent storage (HDD
 **Choose SQL** as a long-term solution when working with a large number of documents or if implementing custom document autosaving and hibernation is not possible.
 
 # Contact Us
-We would appreciate it if you [participate in this short survey]
-(https://docs.google.com/forms/d/e/1FAIpQLSeRlfTWhrRfHei8LgNPgC-Ol9dT9sX773_Pmo8-X-XRfQpSww/viewform) (4 questions, ~2 min).
+We would appreciate it if you [participate in this short survey](https://docs.google.com/forms/d/e/1FAIpQLSeRlfTWhrRfHei8LgNPgC-Ol9dT9sX773_Pmo8-X-XRfQpSww/viewform) (4 questions, ~2 min).
