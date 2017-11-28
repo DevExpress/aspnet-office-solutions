@@ -12,9 +12,22 @@ namespace DocumentSite {
         public static void OnStart() {
             SetUpAppInitializationModule();
             SetUpAppPoolToEnable32BitApplications();
-            InterRoleCommunicator.SetUp();
+            InterRoleCommunicator.Initialize(true);
+            InterRoleCommunicator.RoleInstanceNumberChanged += OnRoleInstanceNumberChanged;
             InitWebRoleState();
         }
+
+        private static void OnRoleInstanceNumberChanged(int number) {
+            if(number < 0) {
+                List<WorkSessionServerInfo> affectedServers = new List<WorkSessionServerInfo>();
+                RoutingTable.ForEachWorkSessionServer((roleInstanceId, serverInfo) => {
+                    if(serverInfo.IsProbablyShuttingDown())
+                        affectedServers.Add(serverInfo);
+                });
+                WorkSessionMessenger.SendMessage(MessageOperation.ServerNumberDecreased, affectedServers);
+            }
+        }
+
         public static void OnStop() {
             SendShutdownNotification();
         }
@@ -42,7 +55,6 @@ namespace DocumentSite {
             return RoleInstanceUtils.GetRoleInstanceAdressList(RoleEnvironmentConfig.RoutingRoleName).Count() > 0;
         }
         static void InitWebRoleState() {
-            RoutingTable.SetSelfState(WorkSessionServerStatus.Online);
             NotifyRoutingServer();
         }
         static void NotifyRoutingServer() {
@@ -53,7 +65,6 @@ namespace DocumentSite {
             });
         }
         static void SendShutdownNotification() {
-            RoutingTable.SetSelfState(WorkSessionServerStatus.ShuttingDown);
             WorkSessionMessenger.SendMessage(MessageOperation.UnregisterServer, new List<WorkSessionServerInfo>());
         }
     }

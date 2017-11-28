@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections.Concurrent;
-using DevExpress.Web.OfficeAzureCommunication.Utils;
 #if DEBUG
 using DevExpress.Web.OfficeAzureCommunication.Diagnostic;
 #endif
@@ -12,6 +11,7 @@ namespace DevExpress.Web.OfficeAzureCommunication {
     using EventHandlerDict = ConcurrentDictionary<string, ServerChangedEventHandler>;
 
     public delegate void ServerChangedEventHandler(WorkSessionServerInfo server);
+    public delegate void ServerEnvironmentChangedEventHandler(List<WorkSessionServerInfo> servers);
 
     public static class RoutingTable {
         static string ServerAddedEventKey = "ServerAdded";
@@ -25,6 +25,19 @@ namespace DevExpress.Web.OfficeAzureCommunication {
 
         #region Events
         static EventHandlerDict serverEvents = new EventHandlerDict();
+
+        static event ServerEnvironmentChangedEventHandler ServerNumberDecreasedCore;
+        public static event ServerEnvironmentChangedEventHandler ServerNumberDecreased {
+            add {
+                if(!value.Method.IsStatic)
+                    throw new NotSupportedException("Only Static event handlers are allowed for the ServerNumberDecreased event");
+                if(ServerNumberDecreasedCore == null || !ServerNumberDecreasedCore.GetInvocationList().Contains(value))
+                    ServerNumberDecreasedCore += value;
+            }
+            remove {
+                ServerNumberDecreasedCore -= value;
+            }
+        }
 
         public static event ServerChangedEventHandler ServerAdded {
             add {
@@ -59,34 +72,10 @@ namespace DevExpress.Web.OfficeAzureCommunication {
         }
         #endregion
 
-        static WorkSessionServerStatus selfStatus { get; set; }
-        public static bool ReadyForRouting { get { return GetAllDocumentServers().Count() > 0; } }
-        public static bool ReadyForPing {
-            get {
-                return !ServerIsShuttingDown();
-            }
-        }
-
+        static bool ReadyForRouting { get { return GetAllDocumentServers().Count() > 0; } }
         public static void EnsureServerIsPrepared() {
             if(!ReadyForRouting)
                 RoutingTableSerializer.RestoreDataFromCache();
-            ForEachWorkSessionServer((id, server) => {
-                if(string.IsNullOrEmpty(server.RoleName)) {
-                    All.TryRemove(id, out server);
-                }
-
-            });
-        }
-        public static void SetSelfState(WorkSessionServerStatus status) {
-            selfStatus = WorkSessionServerStatus.Online;
-        }
-        
-        public static WorkSessionServerStatus GetSelfStatus() {
-            return selfStatus;
-        }
-
-        static bool ServerIsShuttingDown() {
-            return GetSelfStatus() == WorkSessionServerStatus.ShuttingDown;
         }
        
         public static void ForEachWorkSessionServer(Action<string, WorkSessionServerInfo> action) {
@@ -156,8 +145,11 @@ namespace DevExpress.Web.OfficeAzureCommunication {
                 BeginUpdate();
                 try {
                     DateTime serverInfoExpirationTime = DateTime.Now.Subtract(serverInfoExpirationInterval);
-                    IEnumerable<WorkSessionServerInfo> outdatedServers = All.Where(serverInfo => (serverInfo.Value.LastUpdateTime < serverInfoExpirationTime && serverInfo.Value.Status == WorkSessionServerStatus.Online)
-                    || string.IsNullOrEmpty(serverInfo.Value.RoleName)).Select(serverInfo => serverInfo.Value);
+                    IEnumerable<WorkSessionServerInfo> outdatedServers = All.Where(serverInfo => 
+                        (serverInfo.Value.LastUpdateTime < serverInfoExpirationTime 
+                            && serverInfo.Value.Status == WorkSessionServerStatus.Online)
+                            || serverInfo.Value.IsProbablyShuttingDown()
+                    ).Select(serverInfo => serverInfo.Value);
                     foreach(WorkSessionServerInfo server in outdatedServers) {
                         server.SetStatus(WorkSessionServerStatus.PingTimeout);
                     }
@@ -169,10 +161,7 @@ namespace DevExpress.Web.OfficeAzureCommunication {
 
         public static void GetWorkSessionServerStateFromMessage(Message msg) {
             EnsureServerIsPrepared();
-            if(msg.Sender.Status == WorkSessionServerStatus.Online)
-                AddWorkSessionServer(msg.Sender);
-            else if(msg.Sender.Status == WorkSessionServerStatus.ShuttingDown && msg.Sender.RoleInstanceId == RoleInstanceUtils.GetCurrentRoleInstanceID())
-                SetSelfState(WorkSessionServerStatus.ShuttingDown);
+            AddWorkSessionServer(msg.Sender);
         }
         public static void AddWorkSession(Message msg) {
             lock(locker) {
@@ -234,7 +223,7 @@ namespace DevExpress.Web.OfficeAzureCommunication {
             lock(locker) {
                 BeginUpdate();
                 try {
-                    if(string.IsNullOrEmpty(msg.Sender.RoleName) || msg.Sender.Status != WorkSessionServerStatus.Online)
+                    if(msg.Sender.IsProbablyShuttingDown() || msg.Sender.Status != WorkSessionServerStatus.Online)
                         return;
                     WorkSessionServerInfo existingServerInfo = All.GetOrAdd(msg.RoleInstanceId, msg.Sender);
                     var wsStatus = GetStatusFromOperation(msg.MessageOperation);
@@ -273,7 +262,7 @@ namespace DevExpress.Web.OfficeAzureCommunication {
                 try {
                     HashSet<string> updatedServerIDs = new HashSet<string>();
                     foreach(WorkSessionServerInfo serverInfo in msg.RegisteredServers) {
-                        if(string.IsNullOrEmpty(serverInfo.RoleName))
+                        if(serverInfo.IsProbablyShuttingDown())
                             continue;
 
                         if(!All.TryGetValue(serverInfo.RoleInstanceId, out WorkSessionServerInfo existingServer)) {
@@ -327,9 +316,6 @@ namespace DevExpress.Web.OfficeAzureCommunication {
                              select serverInfo;
                 return servers;
             }
-        }
-        public static bool IsServerAvailable(WorkSessionServerInfo serverInfo) {
-            return !string.IsNullOrEmpty(serverInfo.RoleName) && serverInfo.Status == WorkSessionServerStatus.Online;
         }
         static IEnumerable<WorkSessionServerInfo> GetAllDocumentServers() {
             return All.Where(serverInfo => serverInfo.Value.RoleName == RoleEnvironmentConfig.DocumentServerRoleName).Select(serverInfo => serverInfo.Value);
@@ -399,6 +385,10 @@ namespace DevExpress.Web.OfficeAzureCommunication {
         }
         static void RaiseServerRemovedEvent(WorkSessionServerInfo server) {
             RaiseEvent(ServerRemovedEventKey, server);
+        }
+        internal static void RaiseServerNumberDecreased(List<WorkSessionServerInfo> servers) {
+            if(ServerNumberDecreasedCore != null)
+                ServerNumberDecreasedCore(servers);
         }
         static void RaiseEvent(string eventName, WorkSessionServerInfo server) {
             if(serverEvents.ContainsKey(eventName) && serverEvents[eventName] != null)

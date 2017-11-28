@@ -1,13 +1,25 @@
 ﻿using DevExpress.Web.OfficeAzureCommunication;
 using DevExpress.Web.Office.Internal;
 using Microsoft.WindowsAzure.ServiceRuntime;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DevExpress.Web.OfficeAzureDocumentServer {
     public static class OfficeAzureDocumentServer {
         public static void Init() {
-            InterRoleCommunicator.Initialize();
+            InterRoleCommunicator.Initialize(false);
             InitControlsConjunction();
             InitServerCommunication();
+            RoutingTable.ServerNumberDecreased += OnServerNumberDecreased;
+        }
+
+        private static void OnServerNumberDecreased(List<WorkSessionServerInfo> servers) {
+            List<WorkSessionServerInfo> selfEvent = servers.Where(s => s.RoleInstanceId == RoleEnvironment.CurrentRoleInstance.Id).ToList();
+            if(selfEvent.Count() > 0) {
+                WorkSessionMessenger.SendMessage(MessageOperation.UnregisterServer, new List<WorkSessionServerInfo>());
+                InterRoleCommunicator.ShutDown();
+                DevExpress.Web.Office.DocumentManager.HibernateAllDocuments();
+            }
         }
 
         static void InitControlsConjunction() {

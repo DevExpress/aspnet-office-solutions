@@ -3,7 +3,7 @@
 namespace DevExpress.Web.OfficeAzureRoutingServer {
     public static class OfficeAzureRoutingServer {
         public static void Init() {
-            InterRoleCommunicator.Initialize();
+            InterRoleCommunicator.Initialize(false);
         }
     }
 }

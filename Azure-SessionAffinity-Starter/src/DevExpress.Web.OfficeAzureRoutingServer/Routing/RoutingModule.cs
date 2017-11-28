@@ -15,9 +15,7 @@ namespace DevExpress.Web.OfficeAzureRoutingServer {
                 routingKey = request.QueryString[RoutingConfiguration.QueryStringParameterName];
             } else if(!string.IsNullOrEmpty(request.Params[RoutingConfiguration.RequestParamKeyName])) {
                 routingKey = request.Params[RoutingConfiguration.RequestParamKeyName];
-            }/* else if(!string.IsNullOrEmpty(request.Headers[RoutingConfiguration.ServerVariableName])) {
-                routingKey = request.Headers[RoutingConfiguration.ServerVariableName];
-            }*/
+            }
             return routingKey;
         }
     }

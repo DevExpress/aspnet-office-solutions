@@ -38,12 +38,12 @@ namespace DevExpress.Web.OfficeAzureCommunication {
             WorkSessions = new WorkSessionDict();
         }
 
-        public WorkSessionServerInfo(string roleInstanceId, string hostServerName, string hostServerIP, WorkSessionServerStatus status) : this() {
+        public WorkSessionServerInfo(string roleInstanceId, string hostServerName, string hostServerIP) : this() {
             RoleInstanceId = roleInstanceId;
             HostServerName = hostServerName;
             HostServerIP = hostServerIP;
             GetServerParameters();
-            Status = status;
+            Status = WorkSessionServerStatus.Online;
         }
 
         public WorkSessionServerInfo(WorkSessionServerInfo serverInfo) : this() {

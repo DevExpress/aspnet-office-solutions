@@ -16,7 +16,7 @@ namespace Routing {
 
         public static void OnStart(string documentServerRoleName, int documentServerPort) {
             ConfigureIIS();
-            InterRoleCommunicator.SetUp();
+            InterRoleCommunicator.Initialize(true);
             InitWebRoleState();
             SubscribeServerEvents();
         }
@@ -78,30 +78,16 @@ namespace Routing {
         }
 
         static void OnDocumentServerRemoved(WorkSessionServerInfo server) {
-            if(server.IsDocumentServer()) {
-                SendHibernateRequest(server);
-                WebRoleConfiguration.UnregisterServer(server.HostServerIP);
-            }
+            if(server.IsDocumentServer())
+                UnregisterServer(server.HostServerIP);
         }
 
-        static void SendHibernateRequest(WorkSessionServerInfo server) {
-            string shutDownPageUrl = GetShutdownRequestUrl(server.HostServerIP);
-            Trace.TraceWarning("Send shutdown request to " + shutDownPageUrl + ". Server " + Environment.MachineName);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(shutDownPageUrl);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            response.Close();
-        }
-
-        static string GetShutdownRequestUrl(string serverAddress) {
-            return string.Format("http://{0}:{1}/Default.aspx?ShutDown=true", serverAddress, RoleEnvironmentConfig.DocumentServerPort);
-        }
         static void OnDocumentServerAdded(WorkSessionServerInfo server) {
             if(server.IsDocumentServer())
-                WebRoleConfiguration.RegisterServer(server.HostServerIP);
+                RegisterServer(server.HostServerIP);
         }
 
         static void PrepareForShutDown() {
-            RoutingTable.SetSelfState(WorkSessionServerStatus.ShuttingDown);
             NotifyServers(MessageOperation.UnregisterServer);
         }
 

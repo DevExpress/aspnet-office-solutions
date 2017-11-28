@@ -7,9 +7,9 @@ namespace DevExpress.Web.OfficeAzureCommunication {
 
     public enum WorkSessionStatus { Loaded, AutoSaved, Hibernated, WokenUp, Removed }
 
-    public enum WorkSessionServerStatus { Online, PingTimeout, ShuttingDown }
+    public enum WorkSessionServerStatus { Online, PingTimeout }
 
-    public enum MessageOperation { Ping, RegisterServer, UnregisterServer, ShutDownServer, AddWorkSession, RemoveWorkSession, WakeUpWorkSession, HibernateWorkSession, AutoSaveWorkSession }
+    public enum MessageOperation { Ping, RegisterServer, UnregisterServer, ShutDownServer, ServerNumberDecreased, AddWorkSession, RemoveWorkSession, WakeUpWorkSession, HibernateWorkSession, AutoSaveWorkSession }
 
     [DataContract(Namespace = BroadcastNamespaces.DataContractNamespace)]
     public class Message {
@@ -37,7 +37,7 @@ namespace DevExpress.Web.OfficeAzureCommunication {
             RoleInstanceId = roleInstanceId;
             MessageOperation = messageOperation;
             AppendServers(registeredServers);
-            SetSenderInfo(new WorkSessionServerInfo(roleInstanceId, hostServerName, hostServerIP, RoutingTable.GetSelfStatus()));
+            SetSenderInfo(new WorkSessionServerInfo(roleInstanceId, hostServerName, hostServerIP));
             CreateTime = DateTime.Now;
         }
 
@@ -47,7 +47,7 @@ namespace DevExpress.Web.OfficeAzureCommunication {
         }
 
         void SetSenderInfo(WorkSessionServerInfo sender) {
-            if(RegisteredServers.Count == 0 || Sender.RoleInstanceId != RoleInstanceId)     
+            if(RegisteredServers.Count == 0 || Sender == null || Sender.RoleInstanceId != RoleInstanceId)     
                 RegisteredServers.Add(sender);
             Sender.GetServerParameters();
         }

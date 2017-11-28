@@ -15,8 +15,10 @@ namespace DevExpress.Web.OfficeAzureCommunication {
             RoutingTableStateDescriptor descriptor = new RoutingTableStateDescriptor();
             if(File.Exists(FilePath)) {
                 using(FileStream file = new FileStream(FilePath, FileMode.Open, FileAccess.Read)) {
-                    var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                    descriptor.Servers.AddRange((List<WorkSessionServerInfo>)formatter.Deserialize(file));
+                    if(file.Length > 0) {
+                        var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                        descriptor.Servers.AddRange((List<WorkSessionServerInfo>)formatter.Deserialize(file));
+                    }
                     file.Close();
                 }
             }

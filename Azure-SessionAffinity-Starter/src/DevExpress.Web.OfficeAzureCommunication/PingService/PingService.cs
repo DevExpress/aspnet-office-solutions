@@ -30,10 +30,8 @@ namespace DevExpress.Web.OfficeAzureCommunication {
         }
 
         protected override void OnServiceCore() {
-            if(RoutingTable.ReadyForPing) {
-                var workSessionInfos = RoutingTable.GetWorkSessionServerInstances();
-                WorkSessionMessenger.SendMessage(MessageOperation.Ping, workSessionInfos);
-            }
+            var workSessionInfos = RoutingTable.GetWorkSessionServerInstances();
+            WorkSessionMessenger.SendMessage(MessageOperation.Ping, workSessionInfos);
         }
 
         public static void Start(TimeoutServiceSettings settings) {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DevExpress.Web.OfficeAzureCommunication {
     public static class MessageDispatcher {
@@ -25,9 +27,18 @@ namespace DevExpress.Web.OfficeAzureCommunication {
                     break;
                 case MessageOperation.UnregisterServer:
                     UnregisterServer(msg);
-                break;
+                    break;
+                case MessageOperation.ServerNumberDecreased:
+                    ServerNumberDecreased(msg);
+                    break;
             }
         }
+
+        private static void ServerNumberDecreased(Message msg) {
+            List<WorkSessionServerInfo> affectedServers = msg.RegisteredServers.Where(s => s.RoleInstanceId != msg.Sender.RoleInstanceId).ToList();
+            RoutingTable.RaiseServerNumberDecreased(affectedServers);
+        }
+
         static bool NeedToUpdateServerStateFromMessage(Message msg) {
             return msg.MessageOperation != MessageOperation.RemoveWorkSession && 
                 msg.MessageOperation != MessageOperation.HibernateWorkSession && 
