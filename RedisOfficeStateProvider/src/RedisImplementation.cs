@@ -77,7 +77,7 @@ namespace DevExpress.Web.RedisOfficeStateProvider {
                 if not wasLockedByAnother then
                     stateUpdateStatus = redis.call('SET', stateKeyName, state)
                     setExpired(stateKeyName)
-                    if not workSessionId == nil and not workSessionId == '' then
+                    if not (documentId == nil or documentId == '') then
                         docIdToStateIdUpdateStatus = redis.call('SET', documentIdToWorkSessionIdKeyName, workSessionId)
                         stateIdToDocIdUpdateStatus = redis.call('SET', workSessionIdToDocumentIdKeyName, documentId)
                         setExpired(documentIdToWorkSessionIdKeyName)
@@ -477,7 +477,7 @@ namespace DevExpress.Web.RedisOfficeStateProvider {
         public static string GetAccessTimeUpdateScript(RedisOfficeStateStorageSettings settings) {
             string score = GetCurrentUnixTimeStamp();
             var script = settings.TrackStateLastAccessTime ? AccessTimeScript : disabledAccessTimeScript;
-            return string.Format(AccessTimeScript, score, AccessTimeSortedSetName);
+            return string.Format(script, score, AccessTimeSortedSetName);
         }
     }
 
