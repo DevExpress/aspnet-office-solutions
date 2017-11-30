@@ -410,6 +410,52 @@ namespace DevExpress.Web.RedisOfficeStateProvider {
             return success;
         }
 
+        public static bool Set(RedisConnection redisConnection, string key, string value, RedisOfficeStateStorageSettings settings) {
+            string[] keyArgs = new string[] { key };
+            object[] valueArgs = new object[] { value };
+
+            string stringGetScript = @"
+                local keyName = KEYS[1]
+                local value = ARGV[1]
+
+                local status = redis.call('SET', keyName, value)
+                setExpired(keyName)
+
+                local retValues = {} 
+                    retValues[1] = status
+                return retValues
+            ";
+
+            var expireScript = ExpireHelper.GetExpireScript(settings);
+            var script = expireScript + stringGetScript;
+            var results = (RedisResult[])(RedisResult)redisConnection.ScriptEvaluate(script, keyArgs, valueArgs);
+
+            string setStatus = (string)results[0];
+            return setStatus == "OK";
+        }
+        public static string Get(RedisConnection redisConnection, string key, RedisOfficeStateStorageSettings settings) {
+            string[] keyArgs = new string[] { key };
+            object[] valueArgs = new object[] { };
+
+            string stringGetScript = @"
+                local keyName = KEYS[1]
+
+                local value = redis.call('GET', keyName)
+                setExpired(keyName)
+
+                local retValues = {} 
+                    retValues[1] = value
+                return retValues
+            ";
+
+            var expireScript = ExpireHelper.GetExpireScript(settings);
+            var script = expireScript + stringGetScript;
+            var results = (RedisResult[])(RedisResult)redisConnection.ScriptEvaluate(script, keyArgs, valueArgs);
+
+            var value = (string)results[0];
+            return value;
+        }
+
         static string GetAccessTimeUpdateScript(RedisOfficeStateStorageSettings settings) { 
             return AccessTimeUpdateScriptHelper.GetAccessTimeUpdateScript(settings);
         }

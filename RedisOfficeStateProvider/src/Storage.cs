@@ -92,11 +92,11 @@ namespace DevExpress.Web.RedisOfficeStateProvider {
         }
 
         public void Set(string key, string value) {
-            RedisConnection.Database.StringSet(key, value);
+            TryRepeater.Do(() => RedisImplementation.Set(RedisConnection, key, value, Settings));
         }
 
         public string Get(string key) {
-            return RedisConnection.Database.StringGet(key);
+            return (string)TryRepeater.Do(() => RedisImplementation.Get(RedisConnection, key, Settings));
         }
 
         #endregion
