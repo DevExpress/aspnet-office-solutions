@@ -1,4 +1,4 @@
-# Overview
+# Using SqlOfficeStateProvider in Azure (Solution Example)
 
 This example demonstrates how to use the DevExpress ASP.NET Spreadsheet and Rich Text Editor controls with the SQL Document State Provider in Microsoft Azure.
 
