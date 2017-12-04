@@ -1,9 +1,5 @@
 # ASP.NET Office Solutions
 
-The ASP.NET Office Solution examples repository for Web Gardens, Web Farms and Clouds
-
-## Overview
-
 This repository contains a set of ready-to-use **state providers** and Azure **starter solutions** to choose from when building scalable web applications with the use of DevExpress ASP.NET Office document processing components ([Spreadsheet](https://documentation.devexpress.com/AspNet/16157/ASP-NET-WebForms-Controls/Spreadsheet) and [Rich Text Editor](https://documentation.devexpress.com/AspNet/17721/ASP-NET-WebForms-Controls/Rich-Text-Editor)).
 
 ## Office document state providers
