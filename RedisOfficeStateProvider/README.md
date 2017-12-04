@@ -1,9 +1,5 @@
 # Redis Office State Provider
 
-Allows ASPxSpreadsheet/ASPxRichEdit to persist the document state in the Redis storage.
-
-## Overview
-
 This project implements a document state provider that uses a Redis storage to keep states of documents opened by the DevExpress ASP.NET Spreadsheet and Rich Text Editor controls.
 
 By using a document state provider, you can build high scalable web applications that provide support for Web Gardens, Web Farms, and clouds.
