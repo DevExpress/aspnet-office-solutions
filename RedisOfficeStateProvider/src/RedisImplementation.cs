@@ -314,11 +314,7 @@ namespace DevExpress.Web.RedisOfficeStateProvider {
 #endif
             if(wasLockedByAnother)
                 throw new CannotRemoveStateCheckedOutByAnotherProcessException();
-            if(state_DeletedKeysCount != 1)
-                throw new CannotRemoveStateException("State");
-
-            var success = state_DeletedKeysCount > 0;
-            return success;
+            return true;
         }
 
         public static string FindWorkSessionId(RedisConnection redisConnection, string documentId) {
