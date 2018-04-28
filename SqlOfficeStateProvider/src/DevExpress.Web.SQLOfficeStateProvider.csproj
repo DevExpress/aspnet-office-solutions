@@ -37,10 +37,19 @@
     <Reference Include="Microsoft.CSharp"/>
     <Reference Include="System.Data"/>
     <Reference Include="System.Xml"/>
-    <Reference Include="DevExpress.Web.v17.2">
+    <Reference Include="DevExpress.Office.v18.1.Core">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>
-      </HintPath>
+      
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v18.1.Core">
+      <SpecificVersion>False</SpecificVersion>
+      
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v18.1">
+      <SpecificVersion>False</SpecificVersion>
+      
       <Private>False</Private>
     </Reference>
   </ItemGroup>

@@ -40,29 +40,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v18.1, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Office.v18.1.Core, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.RichEdit.v18.1.Core, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Spreadsheet.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Spreadsheet.v18.1.Core, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxRichEdit.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Web.ASPxRichEdit.v18.1, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v18.1, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="DevExpress.Web.ASPxThemes.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Web.ASPxThemes.v18.1, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v18.1, Version=18.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -125,18 +125,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\DevExpress.Charts.v17.2.Core.dll" />
-    <Content Include="bin\DevExpress.Data.v17.2.dll" />
-    <Content Include="bin\DevExpress.Office.v17.2.Core.dll" />
-    <Content Include="bin\DevExpress.Printing.v17.2.Core.dll" />
-    <Content Include="bin\DevExpress.RichEdit.v17.2.Core.dll" />
-    <Content Include="bin\DevExpress.Spreadsheet.v17.2.Core.dll" />
-    <Content Include="bin\DevExpress.Web.ASPxRichEdit.v17.2.dll" />
-    <Content Include="bin\DevExpress.Web.ASPxSpellChecker.v17.2.dll" />
-    <Content Include="bin\DevExpress.Web.ASPxSpreadsheet.v17.2.dll" />
-    <Content Include="bin\DevExpress.Web.ASPxThemes.v17.2.dll" />
-    <Content Include="bin\DevExpress.Web.v17.2.dll" />
-    <Content Include="bin\DevExpress.XtraCharts.v17.2.dll" />
+    <Content Include="bin\DevExpress.Charts.v18.1.Core.dll" />
+    <Content Include="bin\DevExpress.Data.v18.1.dll" />
+    <Content Include="bin\DevExpress.Office.v18.1.Core.dll" />
+    <Content Include="bin\DevExpress.Printing.v18.1.Core.dll" />
+    <Content Include="bin\DevExpress.RichEdit.v18.1.Core.dll" />
+    <Content Include="bin\DevExpress.Spreadsheet.v18.1.Core.dll" />
+    <Content Include="bin\DevExpress.Web.ASPxRichEdit.v18.1.dll" />
+    <Content Include="bin\DevExpress.Web.ASPxSpellChecker.v18.1.dll" />
+    <Content Include="bin\DevExpress.Web.ASPxSpreadsheet.v18.1.dll" />
+    <Content Include="bin\DevExpress.Web.ASPxThemes.v18.1.dll" />
+    <Content Include="bin\DevExpress.Web.v18.1.dll" />
+    <Content Include="bin\DevExpress.XtraCharts.v18.1.dll" />
     <Content Include="Diagnostic\Diagnostic.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="HealthCheck.txt" />
