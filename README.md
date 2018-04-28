@@ -1,8 +1,8 @@
-# ASP.NET Office Solutions
+# Overview
 
-This repository contains a set of ready-to-use **state providers** and Azure **starter solutions** to choose from when building scalable web applications with the use of DevExpress ASP.NET Office document processing components ([Spreadsheet](https://documentation.devexpress.com/AspNet/16157/ASP-NET-WebForms-Controls/Spreadsheet) and [Rich Text Editor](https://documentation.devexpress.com/AspNet/17721/ASP-NET-WebForms-Controls/Rich-Text-Editor)).
+This repository contains two ready-to-use **state providers** (for Redis and SQL data stores) and a set of **starter solutions** (for Azure and Amazon Web Services) to choose from when building scalable web applications with the use of DevExpress ASP.NET Office document processing components ([Spreadsheet](https://documentation.devexpress.com/AspNet/16157/ASP-NET-WebForms-Controls/Spreadsheet) and [Rich Text Editor](https://documentation.devexpress.com/AspNet/17721/ASP-NET-WebForms-Controls/Rich-Text-Editor)).
 
-## Office document state providers
+## State providers
 
 An Office document state provider allows several web server instances to work together when processing a set of documents by persisting all opened documents' states in a separate storage. Web servers check-out the requested documents from storage, process them and return the latest document states. This means that web servers do not maintain any server-specific state between requests using a document state provider, which enables the application to be dynamically scaled.
 
@@ -17,9 +17,11 @@ A state provider implementation that uses an SQL Server database as the document
 
 A solution that uses a state provider is highly scalable and provides support for Web Gardens, Web Farms, and clouds with IIS/ASP.NET-based web servers.
 
-## Azure starter solutions
+## Starter solutions
 
-We have prepared the following Microsoft Azure starter templates to help you get started with application scalability when using our ASP.NET Spreadsheet and Rich Text Editor controls:
+We have prepared the following starter templates to help you get started with application scalability when using our ASP.NET Spreadsheet and Rich Text Editor controls.
+
+### For Microsoft Azure:
 
 * **Azure-RedisOfficeStateProvider-Starter**  
 An example of an [Azure Cloud Service](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-choose-me) that uses the [Azure Redis Cache](https://docs.microsoft.com/en-us/azure/redis-cache/) to store document states between user requests to multiple web servers.
@@ -30,12 +32,21 @@ An example of an [Azure Cloud Service](https://docs.microsoft.com/en-us/azure/cl
 * **Azure-SessionAffinity-Starter**  
 An example of an [Azure Cloud Service](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-choose-me) that uses the session affinity paradigm and custom-implemented smart request routing that routes requests from a user to the web server instance that has the requested document loaded in RAM.
 
+### For Amazon Web Services:
+
+* **AWS-RedisOfficeStateProvider-Starter**  
+An example of a web application that uses [Amazon ElastiCache for Redis](https://aws.amazon.com/redis/) to store document states between user requests to multiple web servers. The application can be deployed to the [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) environment.
+
+* **AWS-SqlOfficeStateProvider-Starter**  
+An example of a web application that uses [Amazon Relational Database Services](https://aws.amazon.com/rds/) to store document states between user requests to multiple web servers. The application can be deployed to the [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) environment.
 
 # Choosing What to Use
 
 Use the tables below to determine the appropriate approach.
 
 ## Which starter solution to choose
+
+### For Microsoft Azure
 
 The following table compares the available starter templates:
 
@@ -44,7 +55,14 @@ The following table compares the available starter templates:
 | Session Affinity-based | Complex solution. Requires building specific application architecture | High, but may require additional coding | Maximum |
 | Redis/SQL State Provider-based | Simple to use | Easy to scale | Slower than Session Affinity |
 
+
+### For Amazon Web Services
+
+**Note:** For the Amazon Web Services environment, we provide only Redis/SQL State Provider-based solutions since they are easy to use and can be embedded into your existing applications without any modification.
+
 ## Which provider to choose
+
+Both state provider solutions are used in the available Microsoft Azure and Amazon Web Services starter solutions without modifications. The provider solutions can also be reused in custom projects for dynamically scaled web applications.
 
 The following table compares the available document state providers:
 
@@ -64,4 +82,5 @@ The SQL Server stores document states in a database on a persistent storage (HDD
 **Choose SQL** as a long-term solution when working with a large number of documents or if implementing custom document autosaving and hibernation is not possible.
 
 # Contact Us
-We would appreciate it if you [participate in this short survey](https://docs.google.com/forms/d/e/1FAIpQLSeRlfTWhrRfHei8LgNPgC-Ol9dT9sX773_Pmo8-X-XRfQpSww/viewform) (4 questions, ~2 min).
+We would appreciate it if you [participate in this short survey]
+(https://docs.google.com/forms/d/e/1FAIpQLSeRlfTWhrRfHei8LgNPgC-Ol9dT9sX773_Pmo8-X-XRfQpSww/viewform) (4 questions, ~2 min).

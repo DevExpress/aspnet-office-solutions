@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="AWS_SqlOfficeStateProvider_Starter.Global_asax" Language="C#" %>

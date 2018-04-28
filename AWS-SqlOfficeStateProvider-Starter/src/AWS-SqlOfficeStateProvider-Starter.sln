@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWS-SqlOfficeStateProvider-Starter", "AWS-SqlOfficeStateProvider-Starter\AWS-SqlOfficeStateProvider-Starter.csproj", "{7ADF0D25-F473-4F61-A0C5-61ACB9B9C9F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpress.Web.SQLOfficeStateProvider", "..\SqlOfficeStateProvider\DevExpress.Web.SQLOfficeStateProvider.csproj", "{15DAB813-0130-44D2-8C22-A676BF4C5DD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7ADF0D25-F473-4F61-A0C5-61ACB9B9C9F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ADF0D25-F473-4F61-A0C5-61ACB9B9C9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ADF0D25-F473-4F61-A0C5-61ACB9B9C9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ADF0D25-F473-4F61-A0C5-61ACB9B9C9F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15DAB813-0130-44D2-8C22-A676BF4C5DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {794A5A08-E982-43A1-8BB1-A4F374F0B6A1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="AWS_RedisOfficeStateProvider_Starter.Global_asax" Language="C#" %>
