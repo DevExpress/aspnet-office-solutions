@@ -1,4 +1,4 @@
-# Overview
+﻿# Overview
 
 This repository contains two ready-to-use **state providers** (for Redis and SQL data stores) and a set of **starter solutions** (for Azure and Amazon Web Services) to choose from when building scalable web applications with the use of DevExpress ASP.NET Office document processing components ([Spreadsheet](https://documentation.devexpress.com/AspNet/16157/ASP-NET-WebForms-Controls/Spreadsheet) and [Rich Text Editor](https://documentation.devexpress.com/AspNet/17721/ASP-NET-WebForms-Controls/Rich-Text-Editor)).
 
@@ -82,5 +82,4 @@ The SQL Server stores document states in a database on a persistent storage (HDD
 **Choose SQL** as a long-term solution when working with a large number of documents or if implementing custom document autosaving and hibernation is not possible.
 
 # Contact Us
-We would appreciate it if you [participate in this short survey]
-(https://docs.google.com/forms/d/e/1FAIpQLSeRlfTWhrRfHei8LgNPgC-Ol9dT9sX773_Pmo8-X-XRfQpSww/viewform) (4 questions, ~2 min).
+We would appreciate it if you [participate in this short survey](https://docs.google.com/forms/d/e/1FAIpQLSeRlfTWhrRfHei8LgNPgC-Ol9dT9sX773_Pmo8-X-XRfQpSww/viewform) (4 questions, ~2 min).

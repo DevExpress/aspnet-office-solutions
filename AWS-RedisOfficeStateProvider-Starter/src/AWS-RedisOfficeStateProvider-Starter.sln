@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWS-RedisOfficeStateProvider-Starter", "AWS-RedisOfficeStateProvider-Starter\AWS-RedisOfficeStateProvider-Starter.csproj", "{7ADF0D25-F473-4F61-A0C5-61ACB9B9C9F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpress.Web.RedisOfficeStateProvider", "..\RedisOfficeStateProvider\DevExpress.Web.RedisOfficeStateProvider.csproj", "{15DAB813-0130-44D2-8C22-A676BF4C5DD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpress.Web.RedisOfficeStateProvider", "..\..\RedisOfficeStateProvider\src\DevExpress.Web.RedisOfficeStateProvider.csproj", "{15DAB813-0130-44D2-8C22-A676BF4C5DD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

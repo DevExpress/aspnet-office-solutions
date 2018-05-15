@@ -7,7 +7,7 @@ Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Azure-SqlOfficeStateProvide
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{F1AB2F87-2147-41FD-BEAB-CF168F8477E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpress.Web.SqlOfficeStateProvider", "..\SqlOfficeStateProvider\DevExpress.Web.SqlOfficeStateProvider.csproj", "{15DAB813-0130-44D2-8C22-A676BF4C5DD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevExpress.Web.SqlOfficeStateProvider", "..\..\SqlOfficeStateProvider\src\DevExpress.Web.SqlOfficeStateProvider.csproj", "{15DAB813-0130-44D2-8C22-A676BF4C5DD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
