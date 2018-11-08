@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DevExpress.Web.SqlOfficeStateProvider</RootNamespace>
     <AssemblyName>DevExpress.Web.SqlOfficeStateProvider</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -37,17 +37,17 @@
     <Reference Include="Microsoft.CSharp"/>
     <Reference Include="System.Data"/>
     <Reference Include="System.Xml"/>
-    <Reference Include="DevExpress.Office.v18.1.Core">
+    <Reference Include="DevExpress.Office.v18.2.Core">
       <SpecificVersion>False</SpecificVersion>
       
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v18.1.Core">
+    <Reference Include="DevExpress.RichEdit.v18.2.Core">
       <SpecificVersion>False</SpecificVersion>
       
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevExpress.Web.v18.1">
+    <Reference Include="DevExpress.Web.v18.2">
       <SpecificVersion>False</SpecificVersion>
       
       <Private>False</Private>

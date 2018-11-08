@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAzure;
+﻿using Microsoft.Azure;
 
 namespace DocumentSite {
     public static class DocumentsConnectionStrings {

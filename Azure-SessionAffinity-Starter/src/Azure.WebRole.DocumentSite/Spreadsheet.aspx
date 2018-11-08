@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Spreadsheet.aspx.cs" Inherits="DocumentSite.Spreadsheet" %>
 
-<%@ Register Assembly="DevExpress.Web.v18.1" Namespace="DevExpress.Web" TagPrefix="dx" %>
-<%@ Register Assembly="DevExpress.Web.ASPxSpreadsheet.v18.1" Namespace="DevExpress.Web.ASPxSpreadsheet" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v18.2" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.ASPxSpreadsheet.v18.2" Namespace="DevExpress.Web.ASPxSpreadsheet" TagPrefix="dx" %>
 
 <%@ Register Src="~/Diagnostic/Diagnostic.ascx" TagPrefix="uc1" TagName="Diagnostic" %>
 

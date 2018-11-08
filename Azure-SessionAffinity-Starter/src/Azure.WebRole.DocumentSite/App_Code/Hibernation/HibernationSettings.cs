@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.WindowsAzure;
+using Microsoft.Azure;
 using DevExpress.Web.DatabaseHibernationProvider;
 
 namespace Hibernation {
