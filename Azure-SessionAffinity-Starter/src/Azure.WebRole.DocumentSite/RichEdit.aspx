@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RichEdit.aspx.cs" Inherits="DocumentSite.RichEdit" %>
 
-<%@ Register Assembly="DevExpress.Web.v19.2" Namespace="DevExpress.Web" TagPrefix="dx" %>
-<%@ Register Assembly="DevExpress.Web.ASPxRichEdit.v19.2" Namespace="DevExpress.Web.ASPxRichEdit" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v20.1" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.ASPxRichEdit.v20.1" Namespace="DevExpress.Web.ASPxRichEdit" TagPrefix="dx" %>
 
 <%@ Register Src="~/Diagnostic/Diagnostic.ascx" TagPrefix="uc1" TagName="Diagnostic" %>
 
