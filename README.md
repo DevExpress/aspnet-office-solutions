@@ -2,6 +2,25 @@
 
 This repository contains two ready-to-use **state providers** (for Redis and SQL data stores) and a set of **starter solutions** (for Azure and Amazon Web Services) to choose from when building scalable web applications with the use of DevExpress ASP.NET Office document processing components ([Spreadsheet](https://documentation.devexpress.com/AspNet/16157/ASP-NET-WebForms-Controls/Spreadsheet) and [Rich Text Editor](https://documentation.devexpress.com/AspNet/17721/ASP-NET-WebForms-Controls/Rich-Text-Editor)).
 
+> **Starting with v20.1, we recommend that you use the client [RichEdit]( https://docs.devexpress.com/AspNetCore/400373/rich-edit) control instead of the server control with a state provider.** This allows you to avoid the following issues:
+> 
+> * RichEdit imports and exports a document model for every request to a state provider (for instance, changing a document content or opening a dialog). This consumes additional CPU resources.
+> * A server's memory stores a document model because the control synchronizes the model between the server and client every time the model changes (for instance, text input or format change).
+> * The server load increases non-linearly with the number of users.
+> * Complex document and session management causes the [session expired error]( https://docs.devexpress.com/AspNet/401519/common-concepts/office-document-management/your-session-has-expired-error).
+> * Complicated session error detection.
+> * The server spell checker uses server memory and sends multiple checking requests to the server.
+> * The server RichEdit cannot open documents over a certain size. However, the client RichEdit can open documents containing thousands of pages.
+> * Closing the document can result in the loss of recent changes due to [client-server synchronization]( https://docs.devexpress.com/AspNet/401911/aspnet-webforms-controls/rich-text-editor/concepts/client-server-synchronization).
+> 
+> Note that the following features are not supported in the client RichEdit control.
+> 
+> * The DOC format; use third-party server libraries (for instance, [Office File API]( https://docs.devexpress.com/OfficeFileAPI/17488/word-processing-document-api)) for conversion
+> * Document protection (coming in 20.2)
+> * Spell check (coming in 20.2)
+> * Embedded file manager. You can use the [DevExtreme File Manager](https://js.devexpress.com/Documentation/Guide/Widgets/FileManager/Getting_Started_with_File_Manager/) to implement advanced file management functionality
+> * [ASP themes]( https://docs.devexpress.com/AspNet/6655/common-concepts/appearance-customization-theming/available-themes); the control uses [DevExtreme themes]( https://js.devexpress.com/DevExtreme/Guide/Themes_and_Styles/Predefined_Themes/) only.
+
 ## State providers
 
 An Office document state provider allows several web server instances to work together when processing a set of documents by persisting all opened documents' states in a separate storage. Web servers check-out the requested documents from storage, process them and return the latest document states. This means that web servers do not maintain any server-specific state between requests using a document state provider, which enables the application to be dynamically scaled.
