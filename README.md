@@ -17,7 +17,7 @@ This repository contains two ready-to-use **state providers** (for Redis and SQL
 > 
 > * The DOC format; use third-party server libraries (for instance, [Office File API]( https://docs.devexpress.com/OfficeFileAPI/17488/word-processing-document-api)) for conversion
 > * Document protection (coming in 20.2)
-> * Spell check (coming in 20.2)
+> * Spell check ([coming in 20.2](https://supportcenter.devexpress.com/internal/ticket/details/T913302))
 > * Embedded file manager. You can use the [DevExtreme File Manager](https://js.devexpress.com/Documentation/Guide/Widgets/FileManager/Getting_Started_with_File_Manager/) to implement advanced file management functionality
 > * [ASP themes]( https://docs.devexpress.com/AspNet/6655/common-concepts/appearance-customization-theming/available-themes); the control uses [DevExtreme themes]( https://js.devexpress.com/DevExtreme/Guide/Themes_and_Styles/Predefined_Themes/) only.
 
